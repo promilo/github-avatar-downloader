@@ -7,6 +7,16 @@ var GITHUB_TOKEN = "6df520119cfb6063a7e918400852e26e4c272762";
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
+if (!process.argv[2]) {
+  console.log("return better arguments")
+  return
+}
+
+if (!process.argv[3]){
+  console.log("return better arguments");
+  returngi
+}
+
 var owner = process.argv[2]
 var repo = process.argv[3]
 
