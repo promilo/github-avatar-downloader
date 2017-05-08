@@ -7,6 +7,8 @@ var GITHUB_TOKEN = "6df520119cfb6063a7e918400852e26e4c272762";
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
+var owner = process.argv[2]
+var repo = process.argv[3]
 
 
 function getRepoContributors(repoOwner, repoName, cb) {
@@ -35,11 +37,11 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
 }
   var avatar = {};
-getRepoContributors("jquery", "jquery", function(err, result) {
+getRepoContributors(owner, repo, function(err, result) {
   for (person of result) {
     avatar[person.login] = person.avatar_url;
     console.log(person.avatar_url);
-    downloadImageByURL(person.avatar_url, "./" + person.login)
+    downloadImageByURL(person.avatar_url, "./avatar/" + person.login)
   }
   console.log(avatar);
   // console.log("Errors:", err);
