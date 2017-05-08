@@ -1,4 +1,7 @@
 var request = require('request');
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
 var GITHUB_USER = "promilo";
 var GITHUB_TOKEN = "6df520119cfb6063a7e918400852e26e4c272762";
 
@@ -31,14 +34,18 @@ function getRepoContributors(repoOwner, repoName, cb) {
       //  })              // Note 4
 
 }
-
-getRepoContributors("jquery", "jquery", function(err, result) {
   var avatar = {};
+getRepoContributors("jquery", "jquery", function(err, result) {
   for (person of result) {
     avatar[person.login] = person.avatar_url;
     console.log(person.avatar_url);
+    downloadImageByURL(person.avatar_url, "./" + person.login)
   }
   console.log(avatar);
   // console.log("Errors:", err);
   // console.log("Result:", result);
 });
+
+function downloadImageByURL(url, filePath) {
+  request.get(url).pipe(fs.createWriteStream(filePath));
+}
